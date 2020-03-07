@@ -81,7 +81,6 @@ public class Model {
 			if(tentativo<massimo && controllaParziale(parziale)) {
 				this.massimo=tentativo;
 				migliore=new ArrayList<SimpleCity>(parziale);
-				System.out.println(migliore);
 			}
 			return;
 		}
@@ -114,7 +113,6 @@ public class Model {
 		int i=0;
 		int count=0;
 		while(i<=sequenza-2) {
-			System.out.println(parziale.get(i)+"   "+parziale.get(i+1));
 		while(parziale.get(i).equals(parziale.get(i+1))){
 			i++;
 			count++;

@@ -50,7 +50,11 @@ public class MeteoDAO {
 		try {
 			Connection conn = DBConnect.getInstance().getConnection();
 			PreparedStatement st = conn.prepareStatement(sql);
+			if(mese<10) {
 			st.setString(1, "2013-0"+mese+"%");
+			}
+			else
+				st.setString(1, "2013-"+mese+"%");
 			st.setString(2, localita);
 			ResultSet rs = st.executeQuery();
 
@@ -81,7 +85,11 @@ public class MeteoDAO {
 		try {
 			Connection conn = DBConnect.getInstance().getConnection();
 			PreparedStatement st = conn.prepareStatement(sql);
-			st.setString(1, "2013-0"+mese+"%");
+			if(mese<10) {
+				st.setString(1, "2013-0"+mese+"%");
+				}
+				else
+					st.setString(1, "2013-"+mese+"%");
 			st.setString(2, localita);
 			ResultSet rs = st.executeQuery();
 			double mediaTrovata =0;
