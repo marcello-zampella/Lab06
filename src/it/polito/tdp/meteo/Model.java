@@ -1,8 +1,11 @@
 package it.polito.tdp.meteo;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import it.polito.tdp.meteo.bean.Rilevamento;
 import it.polito.tdp.meteo.bean.SimpleCity;
+import it.polito.tdp.meteo.db.MeteoDAO;
 
 public class Model {
 
@@ -16,8 +19,20 @@ public class Model {
 	}
 
 	public String getUmiditaMedia(int mese) {
-
-		return "TODO!";
+		MeteoDAO mDAO=new MeteoDAO();
+		ArrayList<Rilevamento> rilevamenti= new ArrayList<Rilevamento>(mDAO.getAllRilevamenti());
+		double totale=0;
+		int tempo=0;
+		
+		for(Rilevamento r: rilevamenti) {
+			if(r.getData().getMonth()==mese) {
+				tempo++;
+				totale+=r.getUmidita();
+			}
+		}
+		double media=totale/tempo;
+		String ritorno=""+media;
+		return ritorno;
 	}
 
 	public String trovaSequenza(int mese) {
