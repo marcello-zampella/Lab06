@@ -17,6 +17,10 @@ public class Citta {
 		this.rilevamenti = rilevamenti;
 	}
 
+	public Citta() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public String getNome() {
 		return nome;
 	}
