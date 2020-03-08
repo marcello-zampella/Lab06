@@ -1,6 +1,7 @@
 package it.polito.tdp.meteo;
 
 import java.net.URL;
+import java.time.Month;
 import java.util.*;
 
 import javafx.collections.FXCollections;
@@ -20,7 +21,7 @@ public class MeteoController {
 	private URL location;
 
 	@FXML
-	private ChoiceBox<?> boxMese;
+	private ChoiceBox<Month> boxMese;
 
 	@FXML
 	private Button btnCalcola;
@@ -33,12 +34,12 @@ public class MeteoController {
 
 	private Model model;
 	
-	private ArrayList<Mese> mesi;
 
 	@FXML
 	void doCalcolaSequenza(ActionEvent event) {
-		Mese m=(Mese) this.boxMese.getValue();
-		this.txtResult.setText(this.model.trovaSequenza(m.getNumero()));
+		Month m= this.boxMese.getValue();
+		this.txtResult.setText(this.model.trovaSequenza(m.getValue()));
+		System.out.println(System.nanoTime());
 		
 	}
 
@@ -46,8 +47,9 @@ public class MeteoController {
 	void doCalcolaUmidita(ActionEvent event) {
 		
 		this.txtResult.clear();
-		Mese m=(Mese) this.boxMese.getValue();
-		String umiditaMedia=this.model.getUmiditaMedia(m.getNumero());
+		Month m=(Month) this.boxMese.getValue();
+		
+		String umiditaMedia=this.model.getUmiditaMedia(m.getValue());
 		this.txtResult.appendText(umiditaMedia);
 		
 	}
@@ -64,21 +66,9 @@ public class MeteoController {
 
 	private void popolaMenu() {
 		
-		mesi= new ArrayList();
-		this.mesi.add( new Mese("Gen",0));
-		this.mesi.add( new Mese("Feb",1));
-		this.mesi.add( new Mese("Mar",2));
-		this.mesi.add(new Mese("Apr",3));
-		this.mesi.add( new Mese("Mag",4));
-		this.mesi.add(new Mese("Giu",5));
-		this.mesi.add(new Mese("Lug",6));
-		this.mesi.add(  new Mese("Ago",7));
-		this.mesi.add( new Mese("Set",8));
-		this.mesi.add(new Mese("Ott",9));
-		this.mesi.add(new Mese("Nov",10));
-		this.mesi.add(new Mese("Dic",11));
-		ObservableList observableList = FXCollections.observableList(mesi);
-		this.boxMese.getItems().addAll(observableList);
+		for(int mese=1;mese<13;mese++) {
+		this.boxMese.getItems().add(Month.of(mese));
+		}
 		
 	}
 
