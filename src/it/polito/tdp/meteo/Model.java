@@ -14,7 +14,7 @@ public class Model {
 	private final static int COST = 100;
 	private final static int NUMERO_GIORNI_CITTA_CONSECUTIVI_MIN = 3;
 	private final static int NUMERO_GIORNI_CITTA_MAX = 6;
-	private final static int NUMERO_GIORNI_TOTALI = 18;
+	private final static int NUMERO_GIORNI_TOTALI = 30;
 	private MeteoDAO mDAO;
 	private ArrayList<Citta> insiemeLocalita;
 	private ArrayList<SimpleCity> migliore;
@@ -108,8 +108,6 @@ public class Model {
 	}
 
 	private boolean ottimizza(LinkedList<SimpleCity> parziale) {
-		//System.out.println(parziale);
-	//	System.out.println();
 		for(Citta c: insiemeLocalita) {
 			for(SimpleCity sc: parziale) {
 			if(sc.getNome().equals(c.getNome())) {
